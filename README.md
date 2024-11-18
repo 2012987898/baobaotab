@@ -20,7 +20,7 @@ https://2012987898.github.io/baobaotab/
 4. 选择解压后的插件文件夹进行加载。
 
 ## 联系我们
-💬 如需帮助或反馈问题，请联系[我们的支持团队](#)
+💬 如需帮助或反馈问题，请联系[我们](#)
 
 - 📢 **Telegram 频道**： [宝宝巴士频道](https://t.me/bbbs999666)
 - 💬 **Telegram 聊天室**： [加入聊天](https://t.me/+lRGcqTCkor8zODRl)
