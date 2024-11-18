@@ -1,5 +1,5 @@
 # 🌟 宝宝的标签页
-![logo](./src/logo.jpg) 
+![logo](./src/logo.png) 
 一个简洁动画高级的浏览器扩展插件
 
 ![示意图](./screenshot.jpg) 
