@@ -4,7 +4,7 @@
     "version": "1.0",
     "description": "一个还算简洁的标签页",
     "chrome_url_overrides": {
-      "newtab": "demo.html"
+      "newtab": "index.html"
     },
     "permissions": [],
     "icons": {
