@@ -1,5 +1,5 @@
 # 🌟 宝宝的标签页
-<img src="./src/logo.png" alt="logo" width="150" 
+<img src="./src/logo.png" alt="logo" width="150" >
 
 一个简洁动画高级的浏览器扩展插件
 
