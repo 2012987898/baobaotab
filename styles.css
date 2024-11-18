@@ -1,0 +1,1163 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 使用更合理的盒模型 */
+}
+
+/* 根元素和body的基础设置 */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px; /* 基础字体大小 */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* 系统字体栈 */
+}
+
+/* 主容器布局 */
+.container {
+    display: grid; /* 使用网格布局 */
+    height: 100%; /* 铺满视口高度 */
+    grid-template-rows: auto 1fr; /* 头部自适应，主体占剩余空间 */
+    grid-template-areas: 
+    "header"
+    "main"; /* 定义网格区域名称 */
+}
+
+/* 头部区域样式 */
+header {
+    grid-area: header; /* 指定网格区域 */
+    height: 100px; /* 固定头部高度 */
+}
+
+/* 主体内容区域 */
+main {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中 */
+    padding-top: 200px; /* 顶部间距 */
+    grid-area: main; /* 指定网格区域 */
+}
+
+/* 导航栏样 */
+.navbar {
+    display: flex;
+    height: 100%;
+    justify-content: flex-end; /* 右对齐 */
+    align-items: center; /* 垂直居中 */
+    padding-right: 20px; /* 右侧内边距 */
+}
+
+/* 搜索框容器 */
+.search {
+    display: flex;
+    gap: 12px;
+    background-color: #f5f5f5;
+    padding: 12px 20px;
+    border-radius: 24px;
+    width: min(600px, 85%); /* 默认宽度 */
+    margin: 20px auto;
+    height: 60px;
+    align-items: center;
+}
+
+/* 搜索框输入框样式 */
+.search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    height: 36px; /* 固定输入框高度 */
+    line-height: 36px; /* 确保文字垂直居中 */
+}
+
+/* 搜索框图标按钮样式 */
+.search svg {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+}
+
+/* 搜索引擎标题样式 */
+.main > div:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 热门内容网格布局 */
+.hot {
+    display: grid;
+    grid-template-columns: repeat(4,1fr); /* 4列等宽布局 */
+    grid-gap: 60px; /* 网格间距 */    
+    margin-top: 20px;
+}
+
+/* 热门内容单个项目样式 */
+.hot > button {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* 为非添加按钮添加动画效果 */
+.hot > button:not(#tianjia) {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* 添加悬停效果（排除添加按钮） */
+.hot > button:not(#tianjia):hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(48, 108, 255, 0.1);
+    background-color: #ffffff;
+}
+
+/* 添加点击效果（排除添加按钮） */
+.hot > button:not(#tianjia):active {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(48, 108, 255, 0.1);
+}
+
+/* 添加光效动画（排除添加按钮） */
+.hot > button:not(#tianjia)::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.hot > button:not(#tianjia):hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+/* 修改标签页删除按钮样式 */
+.san {
+    display: none; /* 隐藏删除按钮 */
+}
+
+/* 确保按钮容器有正确的定位上下文 */
+.hot > button {
+    position: relative;
+    z-index: 1;
+}
+
+/* 删除按钮悬停效果 */
+.san:hover {
+    transform: scale(1.15);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 删除按钮激活效果 */
+.san:active {
+    transform: scale(0.95);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* PC端显示删除按钮 */
+.hot > button:not(#tianjia):hover .san {
+    display: flex !important;
+}
+
+/* 移动端编辑模式显示删除按钮 */
+.hot > button.edit-mode .san {
+    display: flex !important;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .san {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        top: -4px;
+        right: -4px;
+    }
+
+    /* 移除PC端的hover显示效果 */
+    .hot > button:not(#tianjia):hover .san {
+        display: none !important;
+    }
+    
+    /* 编辑模式下显示删除按钮 */
+    .hot > button.edit-mode .san {
+        display: flex !important;
+    }
+}
+
+/* 禁止删除最后一个标签页 */
+.hot > button:only-of-type:not(#tianjia) .san {
+    display: none !important;
+}
+
+/* 图标颤抖动画 */
+@keyframes continuousShake {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0); }
+}
+
+.shake {
+    animation: continuousShake 0.5s infinite;
+}
+
+@keyframes popupBounceIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes popupBounceOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* 轻微的遮罩背景 */
+    display: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: none; /* 移除整体的模糊效果 */
+    -webkit-backdrop-filter: none;
+}
+
+.popup.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.popup.show .popup-content {
+    animation: popupBounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.popup.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.popup.hide .popup-content {
+    animation: popupBounceOut 0.4s ease-in forwards;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(350px, 90vw);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px) saturate(180%); /* 只在弹窗内容区域保留毛玻璃效果 */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 15px;
+    padding: 20px 25px 80px;
+    text-align: left;
+}
+
+#popup p {
+    font-size: 18px; /* 略大的字体 */
+    line-height: 1.6; /* 提高行高以增加可读性 */
+    margin: 10px 0;
+    color: #333;
+}
+
+.close {
+    position: absolute;
+    top: 15px; /* 与弹窗内边距对齐 */
+    right: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #555; /* 更柔和的颜色 */
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.2s; /* 增加缩放效果 */
+}
+
+.close:hover {
+    opacity: 1;
+    transform: scale(1.1); /* 悬停时微缩放 */
+}
+
+.h2b{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明背景 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #007aff;
+    background-color: rgba(255, 255, 255, 0.8); /* 聚焦时背景更不透明 */
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px; /* 标签和输入框之间的间距 */
+}
+
+#fileInput {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#fileInput:hover {
+    border-color: #007aff; /* 悬停时的边框颜色 */
+}
+
+#fileInput:focus {
+    outline: none;
+    border-color: #007aff; /* 聚焦时的 */
+}
+
+.complete-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 122, 255, 0.9); /* 稍微透明的蓝色 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.complete-button:hover {
+    background-color: rgba(0, 122, 255, 1);
+    transform: translateY(-1px);
+}
+
+.tb{
+    cursor: pointer; /* 鼠标指针样式 */
+    width: 100%;
+    height: 100%;;
+    border-radius: 50%;
+}
+
+.search .shou {
+    color: #666; /* 默认颜色 */
+    transition: color 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out; /* 细腻过渡效果 */
+    cursor: pointer; /* 鼠标指针样式 */
+    will-change: transform, box-shadow; /* 提高性能，预示化 */
+}
+
+.search .shou:hover {
+    color: #306CFF; /* 悬浮时的颜色 */
+    transform: scale(1.05); /* 更细微的放大效果 */
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 100px;
+        padding-left: 15px; /* 添加左边距 */
+        padding-right: 15px; /* 添加右边距 */
+    }
+    
+    .search {
+        width: 100%; /* 占满容器宽度 */
+        padding: 10px 15px;
+        gap: 8px;
+        margin: 20px 0;
+    }
+    
+    .hot {
+        grid-gap: 40px;
+        width: 100%; /* 确保网格也不会溢出 */
+        padding: 0 10px; /* 添加内边距 */
+    }
+    
+    .hot > button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 480px) {
+    main {
+        padding-left: 20px; /* 增加边距 */
+        padding-right: 20px;
+    }
+    
+    .search {
+        padding: 8px 12px;
+    }
+}
+
+/* 修改搜索框清除按钮样式 */
+.search .cha {
+    display: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease-out, transform 0.2s ease-out;
+    width: 42px; /* 保持宽度 */
+    height: 42px; /* 保持高度 */
+    padding: 9px; /* 保持内边距 */
+}
+
+.search .cha:hover {
+    color: #306CFF;
+    transform: scale(1.1);
+}
+
+.search .cha.show {
+    display: block;
+}
+
+/* 修改搜索框布局 */
+.search {
+    display: flex;
+    gap: 12px;
+    background-color: #f5f5f5;
+    padding: 12px 20px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+.search svg {
+    flex-shrink: 0;
+}
+
+/* 添加按钮的悬停效果 */
+#tianjia {
+    transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+#tianjia:hover {
+    transform: scale(0.85); /* 悬停时缩小到85% */
+}
+
+/* 确保SVG图标大小正确 */
+#tianjia svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* 添加搜索引擎切换按钮样式 */
+.ssyq {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.ssyq:hover {
+    transform: scale(1.1);
+}
+
+/* 搜索引擎选择弹窗样式 */
+.ssyq-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ssyq-popup.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.ssyq-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(300px, 90vw);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+}
+
+.ssyq-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ssyq-item {
+    position: relative; /* 为删除按钮提供定位上下文 */
+    display: flex;
+    align-items: center;
+    padding: 12px 40px 12px 12px; /* 右侧留出删除按钮的空间 */
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.ssyq-item:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.ssyq-item.active {
+    background-color: rgba(48, 108, 255, 0.1);
+}
+
+.ssyq-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    object-fit: contain;
+}
+
+/* 搜索引擎选择项中的图标式 */
+.ssyq-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ssyq-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 修改选择项样式 */
+.ssyq-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 修改搜索引擎图标样式 */
+.search .ssyq {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 6px;
+}
+
+.search .ssyq:hover {
+    transform: scale(1.1);
+}
+
+/* 修改搜索引擎选择项样式 */
+.ssyq-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    object-fit: contain;
+}
+
+/* PC端搜索引擎删除按钮样式 */
+.ssyq-delete {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e64040;
+    font-size: 18px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex; /* 使用flex布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    border-radius: 50%;
+    background-color: rgba(219, 215, 215, 0.3);
+    backdrop-filter: blur(10px) saturate(180%);
+    transition: all 0.3s ease;
+    display: none;
+    z-index: 10;
+    line-height: 1; /* 重置行高 */
+    padding-bottom: 2px; /* 微调垂直位置 */
+}
+
+/* PC端悬停显示删除按钮 */
+.ssyq-item:hover .ssyq-delete {
+    display: flex !important; /* 使用flex显示 */
+}
+
+.ssyq-delete:hover {
+    transform: translateY(-50%) scale(1.1);
+    background-color: rgba(219, 215, 215, 0.5);
+}
+
+/* 移动端样式覆盖 */
+@media (max-width: 768px) {
+    .ssyq-item:hover .ssyq-delete {
+        display: none !important; /* 移动端下禁用hover显示 */
+    }
+    
+    .ssyq-item.edit-mode .ssyq-delete {
+        display: block !important; /* 编辑模式下显示 */
+    }
+}
+
+/* 禁止删除最后一个搜索引擎 */
+.ssyq-item:only-child .ssyq-delete {
+    display: none !important;
+}
+
+/* 搜索引擎选择弹窗的响应式样式 */
+@media (max-width: 768px) {
+    .ssyq-content {
+        width: 85%; /* 调整弹窗宽度 */
+        padding: 15px; /* 减小内边距 */
+    }
+
+    .ssyq-item {
+        padding: 10px; /* 减小选项内边距 */
+        margin: 6px 0; /* 减小选项间距 */
+    }
+
+    .ssyq-item img {
+        width: 20px; /* 稍微缩小图标 */
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .ssyq-delete {
+        width: 18px; /* 缩小删除按钮 */
+        height: 18px;
+        font-size: 16px;
+        line-height: 18px;
+        right: 10px;
+    }
+
+    .h2b {
+        margin-top: 30px; /* 调标题边距 */
+        margin-bottom: 15px;
+        font-size: 18px; /* 调整标题大小 */
+    }
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 480px) {
+    .ssyq-content {
+        width: 90%; /* 进一步调整宽度 */
+        padding: 12px;
+    }
+
+    .ssyq-item {
+        padding: 8px;
+        margin: 4px 0;
+    }
+}
+
+/* 移动端搜索引擎删除按钮样式 */
+@media (max-width: 768px) {
+    .ssyq-delete {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 16px;
+        right: 10px;
+        /* 默认隐藏，通过长按显示 */
+        display: none;
+    }
+    
+    /* 移除PC端的hover显示效果 */
+    .ssyq-item:hover .ssyq-delete {
+        display: none;
+    }
+    
+    /* 添加长按反馈效果 */
+    .ssyq-item.pressed {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* 修改搜索引擎选择项在移动端的样式 */
+@media (max-width: 768px) {
+    .ssyq-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 12px 40px 12px 12px; /* 右侧留出删除按钮的空间 */
+        margin: 6px 0;
+        width: 100%; /* 确保宽度占满 */
+    }
+
+    .ssyq-item span:not(.ssyq-delete) {
+        flex: 1; /* 文字占据剩余空间 */
+        white-space: nowrap; /* 防文字换行 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 文字过长时显示省略号 */
+        margin-right: 30px; /* 给删除按钮留出空间 */
+    }
+
+    .ssyq-delete {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 16px;
+    }
+
+    .ssyq-item img {
+        flex-shrink: 0; /* 防止图标被压缩 */
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        object-fit: contain; /* 确保图片比例正确 */
+    }
+}
+
+/* 修改移动端搜索引擎选择项样式 */
+@media (max-width: 768px) {
+    /* 移除选择项的悬停动画效果 */
+    .ssyq-item:hover {
+        background-color: rgba(255, 255, 255, 0.5); /* 保持原始背景色 */
+        transform: none; /* 移除位移动画 */
+    }
+    
+    /* 选中状态样式 */
+    .ssyq-item.active {
+        background-color: rgba(48, 108, 255, 0.1); /* 保持选中状态的背景色 */
+    }
+    
+    /* 点击反馈效果 */
+    .ssyq-item:active {
+        background-color: rgba(0, 0, 0, 0.05); /* 轻微的点击反馈 */
+    }
+}
+
+/* 移动端编模式样式 */
+@media (max-width: 768px) {
+    .ssyq-item.edit-mode {
+        background-color: rgba(0, 0, 0, 0.02);
+        transform: none;
+    }
+    
+    .ssyq-item.edit-mode:active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    /* 编辑模式下禁用选择动画 */
+    .ssyq-item.edit-mode:hover {
+        transform: none;
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    /* 编辑模式下的删除按钮 */
+    .ssyq-item.edit-mode .ssyq-delete {
+        display: block;
+        background-color: rgba(230, 64, 64, 0.1);
+    }
+    
+    .ssyq-item.edit-mode .ssyq-delete:active {
+        background-color: rgba(230, 64, 64, 0.2);
+    }
+}
+
+/* 添加搜索引擎按钮样式 */
+.add-engine-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 8px;
+}
+
+.add-engine-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: #999;
+}
+
+.add-engine-btn svg {
+    opacity: 0.6;
+}
+
+.add-engine-btn span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* URL提示文字样式 */
+.url-tip {
+    font-size: 12px;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .add-engine-btn {
+        padding: 10px;
+        margin-top: 12px;
+    }
+}
+
+/* 搜索容器样式 */
+.search-container {
+    position: relative;
+    flex: 1;
+}
+
+.search-container input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 8px;
+    height: 36px;
+    line-height: 36px;
+}
+
+/* 搜索历史样式 */
+.search-history {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.clear-history {
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.clear-history:hover {
+    color: #306CFF;
+}
+
+.history-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+}
+
+.history-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.history-item svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    opacity: 0.5;
+}
+
+.history-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.history-content svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    opacity: 0.5;
+}
+
+.history-delete {
+    color: #666;
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+    line-height: 1; /* 重置行高 */
+    padding-bottom: 2px; /* 微调垂直位置 */
+}
+
+.history-item:hover .history-delete {
+    opacity: 1;
+}
+
+.history-delete:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #e64040;
+}
+
+/* 滚动条样式 */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .search-history {
+        position: fixed;
+        left: 20px;
+        right: 20px;
+        margin-top: 4px;
+    }
+    
+    .history-item {
+        padding: 12px 16px;
+    }
+}
+
+/* 删除按钮容器样式 */
+.hots {
+    position: relative; /* 为删除按钮提供定位上下文 */
+}
+
+.delete-container {
+    position: absolute;
+    z-index: 100;
+}
+
+/* 修改删除按钮样式 */
+.san {
+    display: none; /* 隐藏删除按钮 */
+}
+
+/* 保留编辑模式下的抖动动画 */
+@keyframes iconShake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+/* 编辑模式下的图标样式 */
+.hot > button.edit-mode {
+    animation: iconShake 0.3s infinite;
+}
+
+/* 编辑模式下停���悬停效果 */
+.hot > button.edit-mode:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* 按钮容器样式 */
+.button-container {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* 修改标签页按钮样式 */
+.button-container button {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 标签页图标样式 */
+.button-container .tb {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 删除按钮样式 */
+.button-container .san {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: -6px;
+    right: -6px;
+    font-size: 12px;
+    color: #e64040;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 1px;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform-origin: center;
+    transition: all 0.2s ease;
+}
+
+/* 悬停效果 */
+.button-container:hover button:not(#tianjia) {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(48, 108, 255, 0.1);
+    background-color: #ffffff;
+}
+
+/* 删除按钮悬停效果 */
+.button-container .san:hover {
+    transform: scale(1.15);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 删除按钮激活效果 */
+.button-container .san:active {
+    transform: scale(0.95);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .button-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .button-container .san {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        top: -4px;
+        right: -4px;
+    }
+}
