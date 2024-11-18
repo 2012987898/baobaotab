@@ -17,19 +17,19 @@ window.onload = function () {
     const defaultEngines = [
         {
             name: '百度',
-            icon: '/src/baidu.png',
+            icon: '/baobaotab/src/baidu.png',
             engine: 'baidu',
             url: 'https://www.baidu.com/s?wd=%s'
         },
         {
             name: '谷歌',
-            icon: '/src/google.png',
+            icon: '/baobaotab/src/google.png',
             engine: 'google',
             url: 'https://www.google.com/search?q=%s'
         },
         {
             name: '必应',
-            icon: '/src/bing.png',
+            icon: '/baobaotab/src/bing.png',
             engine: 'bing',
             url: 'https://www.bing.com/search?q=%s'
         }
@@ -257,9 +257,9 @@ window.onload = function () {
     if (hot) {
         // 默认标签页数据
         const defaultHotButtons = [
-            { name: '抖音', image: '/src/dy.jpg', link: 'https://www.douyin.com' },
-            { name: '哔哩哩', image: '/src/blbl.png', link: 'https://www.bilibili.com' },
-            { name: 'chatgpt', image: '/src/chatgpt.png', link: 'https://chatgpt.com' }
+            { name: '抖音', image: '/baobaotab/src/dy.jpg', link: 'https://www.douyin.com' },
+            { name: '哔哩哩', image: '/baobaotab/src/blbl.png', link: 'https://www.bilibili.com' },
+            { name: 'chatgpt', image: '/baobaotab/src/chatgpt.png', link: 'https://chatgpt.com' }
         ];
 
         // 标签页存储相关功能
