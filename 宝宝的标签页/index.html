@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>新标签页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" href="./src/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./src/logo.png" type="image/png">
+
+    <link rel="stylesheet" href="./styles.css">
+
+</head>
+
+<body>
+    <script src="./styles.js"></script>
+    <div class="container">
+        <header class="header">
+            <div class="navbar" style="display: none;">
+                <h1>🌞</h1>
+                <h1>🔧</h1>
+            </div>
+        </header>
+        <main class="main">
+            <div>搜索引擎</div>
+            <div class="search">
+                <img class="ssyq" src="./src/baidu.png" alt="搜索引擎">
+                <div class="search-container">
+                    <input type="text" placeholder="请输入搜索内容">
+                    <div class="search-history">
+                        <div class="history-header">
+                            <span>搜索历史</span>
+                            <span class="clear-history">清空历史</span>
+                        </div>
+                        <ul class="history-list"></ul>
+                    </div>
+                </div>
+                <svg class="cha" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M691.2 716.8c-6.826667 0-12.8-2.56-17.92-7.68l-358.4-357.546667c-10.24-10.24-10.24-26.453333 0-35.84 10.24-10.24 26.453333-10.24 35.84 0L708.266667 673.28c10.24 10.24 10.24 26.453333 0 35.84-4.266667 5.12-11.093333 7.68-17.066667 7.68z"
+                        class="" fill="#190D04"></path>
+                    <path
+                        d="M332.8 716.8c-6.826667 0-12.8-2.56-17.92-7.68-10.24-10.24-10.24-26.453333 0-35.84L672.426667 315.733333c10.24-10.24 26.453333-10.24 35.84 0 10.24 10.24 10.24 26.453333 0 35.84L351.573333 709.12c-5.12 5.12-11.946667 7.68-18.773333 7.68z"
+                        class="" fill="#190D04"></path>
+                </svg>
+                <svg class="shou" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M466.4 747.2c60.8 0 119.2-19.2 168-56l32.8-24 24-32.8c36.8-48.8 56-107.2 56-168 0-154.4-125.6-280.8-280.8-280.8s-280 126.4-280 280.8c0 155.2 125.6 280.8 280 280.8m408 180.8c-13.6 0-26.4-4.8-36.8-15.2L688.8 763.2c-61.6 46.4-138.4 73.6-221.6 73.6-205.6 0.8-371.2-165.6-371.2-370.4C96 261.6 261.6 96 466.4 96c204.8 0 370.4 165.6 370.4 370.4 0 83.2-27.2 160-73.6 221.6l149.6 149.6c20 20 20 53.6 0 73.6l-1.6 1.6c-9.6 10.4-23.2 15.2-36.8 15.2z"
+                        fill="currentColor" class=""></path>
+                </svg>
+            </div>
+
+            <div class="hots">
+                <ul class="hot" id="hot">
+
+                    <button id="tianjia" class="tianjia">
+                        <svg width="32" height="32" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M224 464h576a48 48 0 0 1 0 96h-576a48 48 0 0 1 0-96z" fill="#DBDBDB" class="">
+                            </path>
+                            <path d="M560 224v576a48 48 0 0 1-96 0v-576a48 48 0 0 1 96 0z" fill="#DBDBDB" class="">
+                            </path>
+                        </svg>
+                    </button>
+                </ul>
+
+            </div>
+        </main>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span id="closePopup" class="close">&times;</span>
+                <h2 class="h2b">自定义标签页</h2>
+                <label for="nameInput">名称：</label>
+                <input type="text" id="nameInput" class="input-field" placeholder="输入名称">
+                <label for="linkInput">跳转链接：</label>
+                <input type="text" id="linkInput" class="input-field" placeholder="输入要跳转的链接">
+                <label for="fileInput">自定义图标：</label>
+                <input type="file" id="fileInput" class="input-field" accept="image/*">
+                <button id="completeButton" class="complete-button">完成</button>
+            </div>
+        </div>
+
+        <div id="ssyqPopup" class="ssyq-popup">
+            <div class="ssyq-content">
+                <span id="closeSsyq" class="close">&times;</span>
+                <h2 class="h2b">选择搜索引擎</h2>
+                <ul class="ssyq-list">
+                    <li class="ssyq-item active" data-engine="baidu">
+                        <img src="./src/baidu.png" alt="百度">
+                        <span>百度</span>
+                        <span class="ssyq-delete">×</span>
+                    </li>
+                    <li class="ssyq-item" data-engine="google">
+                        <img src="./src/google.png" alt="谷歌">
+                        <span>谷歌</span>
+                        <span class="ssyq-delete">×</span>
+                    </li>
+                    <li class="ssyq-item" data-engine="bing">
+                        <img src="./src/bing.png" alt="必应">
+                        <span>必应</span>
+                        <span class="ssyq-delete">×</span>
+                    </li>
+                </ul>
+                <button class="add-engine-btn">
+                    <svg width="16" height="16" viewBox="0 0 1024 1024">
+                        <path d="M224 464h576a48 48 0 0 1 0 96h-576a48 48 0 0 1 0-96z" fill="#666"></path>
+                        <path d="M560 224v576a48 48 0 0 1-96 0v-576a48 48 0 0 1 96 0z" fill="#666"></path>
+                    </svg>
+                    <span>添加搜索引擎</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="addEnginePopup" class="popup">
+            <div class="popup-content">
+                <span id="closeAddEngine" class="close">&times;</span>
+                <h2 class="h2b">添加搜索引擎</h2>
+                <label for="engineName">名称：</label>
+                <input type="text" id="engineName" class="input-field" placeholder="输入搜索引擎名称">
+                <label for="engineIcon">图标：</label>
+                <input type="file" id="engineIcon" class="input-field" accept="image/*">
+                <label for="engineUrl">搜索链接：</label>
+                <input type="text" id="engineUrl" class="input-field" placeholder="输入搜索链接，使用 %s 代替搜索词">
+                <p class="url-tip">例如：https://www.google.com/search?q=%s</p>
+                <button id="addEngineBtn" class="complete-button">添加</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
